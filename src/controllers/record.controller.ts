@@ -26,7 +26,7 @@ export class RecordController {
 
   static async getById(req: AuthRequest, res: Response, next: NextFunction) {
     try {
-      const record = await RecordService.getById(req.params.id);
+      const record = await RecordService.getById(req.params.id as string);
       res.json(record);
     } catch (error) {
       next(error);
@@ -35,7 +35,7 @@ export class RecordController {
 
   static async update(req: AuthRequest, res: Response, next: NextFunction) {
     try {
-      const record = await RecordService.update(req.params.id, req.body);
+      const record = await RecordService.update(req.params.id as string, req.body);
       res.json(record);
     } catch (error) {
       next(error);
@@ -44,7 +44,7 @@ export class RecordController {
 
   static async delete(req: AuthRequest, res: Response, next: NextFunction) {
     try {
-      await RecordService.softDelete(req.params.id);
+      await RecordService.softDelete(req.params.id as string);
       res.json({ message: "Record deleted successfully" });
     } catch (error) {
       next(error);

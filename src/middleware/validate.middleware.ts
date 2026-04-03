@@ -7,7 +7,7 @@ export const validate = (schema: ZodSchema, source: "body" | "query" = "body") =
     const result = schema.safeParse(source === "body" ? req.body : req.query);
 
     if (!result.success) {
-      const details = result.error.errors
+      const details = result.error.issues
         .map((e) => `${e.path.join(".")}: ${e.message}`)
         .join(", ");
       return next(new AppError("Invalid input", 400, details));

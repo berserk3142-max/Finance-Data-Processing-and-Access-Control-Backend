@@ -22,7 +22,7 @@ export class UserController {
 
   static async updateRole(req: Request, res: Response, next: NextFunction) {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { role } = req.body;
       const user = await UserService.updateRole(id, role);
       res.json(user);
@@ -33,7 +33,7 @@ export class UserController {
 
   static async updateStatus(req: Request, res: Response, next: NextFunction) {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { status } = req.body;
       const user = await UserService.updateStatus(id, status);
       res.json(user);
