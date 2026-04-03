@@ -15,6 +15,20 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (_req, res) => {
+  res.json({
+    message: "Finance Data Processing & Access Control API",
+    version: "1.0.0",
+    endpoints: {
+      health: "/api/health",
+      auth: "/api/auth",
+      users: "/api/users",
+      records: "/api/records",
+      dashboard: "/api/dashboard",
+    },
+  });
+});
+
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
